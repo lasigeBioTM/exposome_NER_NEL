@@ -8,19 +8,18 @@ Tool for Named Entity Recognition (NER) + Named Entity Linking (NEL).
 ### Docker  
 
 ```
-docker build . -t NER_NEL
+docker build . -t ner_nel
 ```
 
 Run a container over the built image:
 
 ```
-docker run -v $(pwd):/exposome_NER_NEL/ --name exposome_NER_NEL --gpus all -it NER_NEL bash  
+docker run -v $(pwd):/exposome_NER_NEL/ --name exposome_NER_NEL --gpus all -it ner_nel bash  
 ```
 
 The part '$(pwd)' indicates that the code available to the container will be placed in the current directory. Replace this if running the code from other directory.
 
-The arg '"device=7"' indicates that GPU 7 will be used. Change to use other GPUS, for example, 
-'"device=7,8"' to use GPUs 7 and 8 (don't forget to schedule on the Google calendar the use of gpus :) )
+The arg '"device=7"' indicates that GPU 7 will be used. Change to use other GPUS, for example, '"device=7,8"' to use GPUs 7 and 8 
 
 The arg --user $(id -u):$(id -g) indicates that current user (you) will have permission to access the files produced during the container run.
 
