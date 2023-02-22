@@ -38,6 +38,12 @@ export PYTHONPATH="${PYTHONPATH}:."
 ```
 
 
+Install the abbreviation detector:
+
+```
+./prepare_env.sh
+```
+
 ### Download data resources to apply the tool and the metabolites dataset
 
 Run:
