@@ -2,6 +2,7 @@
 
 Tool for Named Entity Recognition (NER) + Named Entity Linking (NEL).
 
+To access the annotations of the metabolites dataset access https://drive.google.com/drive/folders/1_b78A5oXECIxo0yI5jWiqvCOVY0en51Z?usp=share_link
 
 ## Setup<a name="Setup"></a>
 
