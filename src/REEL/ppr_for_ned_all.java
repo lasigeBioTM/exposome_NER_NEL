@@ -88,16 +88,16 @@ public class ppr_for_ned_all {
 
 		// Path to the file with the information content for each candidate.
 		//String dir_freebase = "tmp/REEL/ic/" + run_id + "/" + link_mode + "_" + nil_mode + "_ic";
-		String dir_freebase = "tmp/" + run_id + "/REEL/ic";
+		String dir_freebase = ".tmp/" + run_id + "/REEL/ic";
 		dir_freebase = current_dir.concat(dir_freebase);
 		
 		// Path to the directory with files with candidates.
 		//String dir_in = "tmp/REEL/candidates/" + run_id + "/" + link_mode + "/" + nil_mode + "/";
-		String dir_in = "tmp/" + run_id + "/REEL/candidates/";
+		String dir_in = ".tmp/" + run_id + "/REEL/candidates/";
 		dir_in = current_dir.concat(dir_in); 
 		
 		// Path to already created directory where output statistics will be written.
-		String dir_out = "tmp/" + run_id + "/REEL/results/";
+		String dir_out = ".tmp/" + run_id + "/REEL/results/";
 		dir_out = current_dir.concat(dir_out);
 
 		if (ssm.equals("ppr_ic")) {

@@ -39,7 +39,7 @@ if not os.path.exists(out_dir):
 #                     Annotate the input documents
 # -----------------------------------------------------------------------------
 annotate(
-    recognize = True,
+    recognize = False,
     link = True,
     types = {'disease': 'medic',
             'chemical': 'chebi',
@@ -51,5 +51,5 @@ annotate(
     
     in_dir = in_dir,
     input_format = 'brat',
-    out_dir = out_dir,
+    out_dir = out_dir
 )

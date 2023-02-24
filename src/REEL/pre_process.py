@@ -57,7 +57,6 @@ def build_entity_candidate_dict(
     """
     
     doc_count = 0
-    #entities_candidates = {}
     changed_cache_final = False
     kb_cache_up = None
     names = set(name_to_id.keys())
@@ -189,16 +188,12 @@ def build_entity_candidate_dict(
                 kb, doc_entities_final, candidates_dir, entity_type, kb_edges, 
                 link_mode, extracted_relations, doc_id)
         
-        #pbar.update(1)
         del doc_abbrvs
         del doc_entities_final
-    
-    #pbar.close()
 
     del names
     del synonyms
    
-    #return entities_candidates, changed_cache_final, kb_cache_up
     return changed_cache_final, kb_cache_up
     
 
@@ -231,21 +226,21 @@ def pre_process(run_id, ner_dir, kb, entity_type, link_mode, nil_mode, abbreviat
     :type abbreviations: dict
     """
 
-    if not os.path.exists('tmp/'):
-        os.mkdir('tmp/')
+    if not os.path.exists('.tmp/'):
+        os.mkdir('.tmp/')
 
-    if not os.path.exists('tmp/{}/'.format(run_id)):
-        os.mkdir('tmp/{}/'.format(run_id))
+    if not os.path.exists('.tmp/{}/'.format(run_id)):
+        os.mkdir('.tmp/{}/'.format(run_id))
 
-    if not os.path.exists('tmp/REEL/'):
-        os.mkdir('tmp/REEL/')
+    if not os.path.exists('.tmp/REEL/'):
+        os.mkdir('.tmp/REEL/')
 
-    if not os.path.exists('tmp/REEL/cache/'):
-        os.mkdir('tmp/REEL/cache/')
+    if not os.path.exists('.tmp/REEL/cache/'):
+        os.mkdir('.tmp/REEL/cache/')
 
-    os.mkdir('tmp/{}/REEL/'.format(run_id))
-    os.mkdir('tmp/{}/REEL/candidates'.format(run_id))
-    os.mkdir('tmp/{}/REEL/results/'.format(run_id))
+    os.mkdir('.tmp/{}/REEL/'.format(run_id))
+    os.mkdir('.tmp/{}/REEL/candidates'.format(run_id))
+    os.mkdir('.tmp/{}/REEL/results/'.format(run_id))
     
     #-------------------------------------------------------------------------
     #                            Import KB info
@@ -282,7 +277,7 @@ def pre_process(run_id, ner_dir, kb, entity_type, link_mode, nil_mode, abbreviat
     #-------------------------------------------------------------------------
     #                  Import cache file (if available)
     #-------------------------------------------------------------------------
-    kb_cache_filename = 'tmp/REEL/cache/{}.json'.format(kb)
+    kb_cache_filename = '.tmp/REEL/cache/{}.json'.format(kb)
     kb_cache = {}
 
     if os.path.exists(kb_cache_filename):
@@ -332,8 +327,6 @@ def pre_process(run_id, ner_dir, kb, entity_type, link_mode, nil_mode, abbreviat
             kb_edges = json.loads(dict_file4.read())
             dict_file4.close()  
         
-        #kb_edges = kb_graph.edges
-
     #-------------------------------------------------------------------------
     #                   Build candidates lists for the entities
     #-------------------------------------------------------------------------
@@ -379,12 +372,7 @@ def pre_process(run_id, ner_dir, kb, entity_type, link_mode, nil_mode, abbreviat
     # Create information content file including every KB concept appearing 
     # in candidates files 
     if kb != 'ncbi_gene':
-        #generate_ic_file(
-        #    run_id, entities_candidates, id_to_info)
         generate_ic_file(run_id, candidates_dir, id_to_info)
     
-    # To free up memory usage
     del id_to_info
-    #del kb_graph
-    #del entities_candidates
     gc.collect()

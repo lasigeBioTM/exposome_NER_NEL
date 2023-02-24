@@ -53,25 +53,14 @@ def stringMatcher(entity_text, name_to_id, top_k):
 def check_if_candidates_dir(run_id):#, link_mode, nil_mode):
     """asffssf"""
 
-    candidates_dir = 'tmp/{}/REEL/candidates/'.format(run_id) 
+    candidates_dir = '.tmp/{}/REEL/candidates/'.format(run_id) 
 
     # Create directories for candidates files
     if not os.path.exists(candidates_dir):
         os.mkdir(candidates_dir)
 
-    #candidates_dir_2 = candidates_dir + link_mode + '/'
-    
-    #if not os.path.exists(candidates_dir_2):
-    #    os.mkdir(candidates_dir_2)
-    
-    #candidates_dir_3 = candidates_dir_2  + nil_mode + '/'
-
-    #if not os.path.exists(candidates_dir_3):
-    #    os.mkdir(candidates_dir_3)
-    
-    # Delete existing candidates files
-    #cand_files = os.listdir(candidates_dir_3)
     cand_files = os.listdir(candidates_dir)
+    
     if len(cand_files)!=0:
         
         for file in cand_files:

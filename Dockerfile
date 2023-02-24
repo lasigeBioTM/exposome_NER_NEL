@@ -6,6 +6,7 @@ FROM python:3.7
 # ---------------------------------------------------------------------------
 RUN apt install wget
 RUN apt install git
+RUN apt install gdown
 
 # ---------------------------------------------------------------------------
 #                             Get and install JAVA

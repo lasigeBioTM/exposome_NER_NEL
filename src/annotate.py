@@ -47,21 +47,12 @@ def recognizer(in_dir, input_text, types, out_dir, link, ner_model):
             
             elif type(input_text) == list:
                 input_files = input_text
-
-        #TODO: delete lines below
-        with open('large_ids', 'r') as tmp_file:
-            added_ids = tmp_file.readlines()
-            tmp_file.close()
-        added_ids = [doc_id.strip('\n') for doc_id in added_ids]
-        #print(added_ids)
-        input_files_up = [doc_id for doc_id in input_files if doc_id.strip(in_dir).strip('.txt') not in added_ids]
-        #print(input_files_up)
-        #print(len(input_files_up))
+      
         # Recognize entities in each document
-        pbar = tqdm(total=len(input_files_up), colour= 'green', 
+        pbar = tqdm(total=len(input_files), colour= 'green', 
             desc='Recognizing entities')
         
-        for i, filename in enumerate(input_files_up):
+        for i, filename in enumerate(input_files):
             doc_id = ''
             text = ''
             
@@ -100,7 +91,6 @@ def recognizer(in_dir, input_text, types, out_dir, link, ner_model):
             del doc_obj
             del doc_entities
             del doc_annots
-            #gc.collect()
             utils.garbage_collect()
             pbar.update(1)
             

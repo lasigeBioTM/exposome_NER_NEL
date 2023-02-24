@@ -21,7 +21,7 @@ def run(ner_dir, kb, entity_type, abbreviations):
     :type abbreviations: dict
     :return: nel_run_id representing the identifier of the current run of REEL.
         The results of the run will be located in the directory 
-        'tmp/REEL/results/<run_id/>'.
+        '.tmp/REEL/results/<run_id/>'.
     :rtype: str
     """
 

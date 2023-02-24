@@ -90,7 +90,7 @@ def generate_ic_file(run_id, candidates_dir, id_to_info):
 
     # Create file ontology_pop with information content for all entities 
     # in candidates file
-    out_dir = "tmp/{}/REEL/".format(run_id)
+    out_dir = ".tmp/{}/REEL/".format(run_id)
 
     if not os.path.exists(out_dir):
         os.mkdir(out_dir)

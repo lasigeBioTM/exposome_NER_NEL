@@ -383,9 +383,7 @@ def objectify_ner_input(doc_id, doc_text, doc_sentences):
         # This allows the correction of the span of the recognized entities
         
         if sent_text.isalnum():
-        
-            #if sent_text == '\n' or sent_text.strp(' ') == '' or sent_text == '\t':
-            
+                    
             try:
                 if i == last_sent_index:
                     original_char = (doc_text[current_pos-1])
@@ -408,9 +406,6 @@ def objectify_ner_input(doc_id, doc_text, doc_sentences):
                         
                         else:
                             proceed = False
-
-                        #else:
-                        #    proceed = True
 
                         i += 1
                     
@@ -545,7 +540,7 @@ def import_reel_results(doc_id, run_ids):
     linked_entities = {}
 
     for run_id in run_ids:
-        results_dir = 'tmp/{}/REEL/results/'.format(run_id)
+        results_dir = '.tmp/{}/REEL/results/'.format(run_id)
         results_files = os.listdir(results_dir)
         linked_entities_type = {}        
         ent_type = run_id.split('_')[1]
@@ -638,11 +633,6 @@ def update_ner_file_with_nel_output(ner_dir, nel_run_ids, out_dir=None):
             ner_output = ner_file.readlines()
             ner_file.close()
         
-        #normalizations = ''
-        
-        #if ner_output[-1][-1:] != '\n':
-        #    normalizations = '\n'
-            
         # Add the normalization lines to the annotations file
         final_output = ''
 
@@ -661,13 +651,10 @@ def update_ner_file_with_nel_output(ner_dir, nel_run_ids, out_dir=None):
                 
                 if key_name in linked_entities.keys() and term_id[0] == 'T':
                     kb_id = linked_entities[key_name][0]
-                    
-                    #normalizations += 'N{}\tReference {} {}\t{}\n'.format(
-                    #    term_id.split('T')[1], term_id, kb_id, entity_text)
+                
                     final_output += 'N{}\tReference {} {}\t{}\n'.format(
                         term_id.split('T')[1], term_id, kb_id, entity_text)
         
-        #final_output = ''.join(ner_output) + normalizations[:-1]
         if final_output[-1:] == '\n':
             final_output = final_output[:-1]
             

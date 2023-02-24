@@ -42,14 +42,12 @@ class ner():
         self.model_type = None
         self.models = {}
 
-        source_dir = 'data/ner_models/'
-
         if self.name == 'pubmedbert':
             self.model_type = 'bert'
             
             if 'disease' in types.keys():
                 self.models['disease'] = ner.load_transformer_model(
-                    "".join([source_dir, 'pruas/BENT-PubMedBERT-NER-Disease']))
+                    'pruas/BENT-PubMedBERT-NER-Disease')
                 dict_filename = 'data/overlapping_entities/disease.json'
                 
                 if len(types.keys()) > 1:
@@ -57,7 +55,7 @@ class ner():
                 
             if 'chemical' in types.keys():
                 self.models['chemical'] = ner.load_transformer_model(
-                    "".join([source_dir, 'pruas/BENT-PubMedBERT-NER-Chemical']))
+                    'pruas/BENT-PubMedBERT-NER-Chemical')
                 dict_filename = 'data/overlapping_entities/chemical.json'
                 
                 if len(types.keys()) > 1:
@@ -65,7 +63,7 @@ class ner():
            
             if 'gene' in types.keys():
                 self.models['gene'] = ner.load_transformer_model(
-                    "".join([source_dir, 'pruas/BENT-PubMedBERT-NER-Gene']))
+                    'pruas/BENT-PubMedBERT-NER-Gene')
                 dict_filename = 'data/overlapping_entities/gene.json'
                 
                 if len(types.keys()) > 1:
@@ -73,7 +71,7 @@ class ner():
 
             if 'organism' in types.keys():
                 self.models['organism'] = ner.load_transformer_model(
-                    "".join([source_dir, 'pruas/BENT-PubMedBERT-NER-Organism']))
+                    'pruas/BENT-PubMedBERT-NER-Organism')
                 dict_filename = 'data/overlapping_entities/organism.json'
                 
                 if len(types.keys()) > 1:
@@ -81,7 +79,7 @@ class ner():
 
             if 'bioprocess' in types.keys():
                 self.models['bioprocess'] = ner.load_transformer_model(
-                    "".join([source_dir, 'pruas/BENT-PubMedBERT-NER-Bioprocess']))   
+                    'pruas/BENT-PubMedBERT-NER-Bioprocess')   
                 dict_filename = 'data/overlapping_entities/bioprocess.json'
                 
                 if len(types.keys()) > 1:
@@ -371,43 +369,6 @@ class ner():
         # Get frequency of each entity
         entity_frequency = ner.get_entity_frequency_in_doc(doc.entities)
 
-        """
-        for i, sent in enumerate(doc.sentences):
-            sent_entities = sent.entities
-
-            for annot in sent_entities:
-                
-                for annot2 in sent_entities:
-
-                    if annot != annot2: 
-                        #------------------------------------------------------
-                        # Resolve entities that have the same or overlapping 
-                        # span but are classified according different entity 
-                        # types in the SAME SENTENCE
-                        #------------------------------------------------------
-                        #if annot.start == annot2.start and \
-                        #    annot.end == annot2.end and \
-                        if annot.text == annot2.text and \
-                            annot.type != annot2.type:
-                        #if annot.start == annot2.start or \
-                        #        annot.end == annot2.end or \
-                        #        annot2.start <= annot.start <= annot2.end or \
-                        #        annot2.start <= annot.end <= annot2.end or \
-                        #        annot.start <= annot2.start <= annot.end or \
-                        #        annot.start <= annot2.end <= annot.end or \
-                        #        annot.text == annot2.text:
-                            
-                            entity2keep, entity2remove = ner.compare_entities_w_same_text(
-                                self, annot, annot2, entity_frequency)
-
-                            if entity2keep != None and entity2remove != None:
-                                changed_entities[entity2remove.text] = (
-                                    entity2keep.type, entity2keep.text) 
-                                sent.remove_entity(entity2remove)
-                                doc.remove_entities([entity2remove])
-        
-            doc.update_sentence(sent, i)
-        """
         #---------------------------------------------------------------------  
         # Resolve entities that have the same text, different entity type and
         # that are located in DIFFERENT SENTENCES of the document

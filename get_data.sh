@@ -1,5 +1,5 @@
-mkdir ../data
-cd ../data/
+mkdir data/
+cd data/
 
 #--------------------------------------------------------------------------
 # Download KB dictionaries
@@ -48,6 +48,7 @@ rm relations.tar.gz
 #-------------------------------------------------------------------------
 #                       Download NILINKER data
 #-------------------------------------------------------------------------
+mkdir NILINKER/
 cd NILINKER/
 # Word-concept dictionaries
 wget https://zenodo.org/record/6561477/files/word_concept.tar.gz?download=1
@@ -78,8 +79,8 @@ rm overlapping_entities.tar.gz
 #-------------------------------------------------------------------------
 #   Download the metabolites dataset
 #-------------------------------------------------------------------------
-gdown https://drive.google.com/uc?id=1_b78A5oXECIxo0yI5jWiqvCOVY0en51Z
-tar -xvf overlapping_entities.tar.gz
-rm overlapping_entities.tar.
+gdown https://drive.google.com/uc?id=1-eV-gZYOnZBoDmAQUXOTP6ntY20SH0rO
+tar -xvf metabolites_dataset.tar.gz
+rm metabolites_dataset.tar.gz
 
 cd ../

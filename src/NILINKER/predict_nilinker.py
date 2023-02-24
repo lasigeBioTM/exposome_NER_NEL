@@ -20,7 +20,7 @@ def load_model(partition, top_k=1):
     params = [200, wc.candidate_num, top_k]
     id_to_name = get_kb_data(partition)
     
-    model_dir = "data/NILINKER/models/{}/".format(partition)
+    model_dir = "data/NILINKER/nilinker_files/{}/train/".format(partition)
     
     model = Nilinker(
         word_embeds, candidate_embeds, params, wc, id_to_name, embeds_word2id)

@@ -34,14 +34,14 @@ class nel():
         pbar = tqdm(total=len(target_kbs.keys()), colour= 'green', 
             desc='Linking entities')
         
-        """
+        
         if self.model == 'reel2':
         
             # ----------------------------------------------------------------
             # Get abbreviations with AB3P in each document of the dataset
             # ----------------------------------------------------------------
-            abbreviations = run_Ab3P(ner_dir) # CHeck if runs with NER_DIR specified 
-            
+            #abbreviations = run_Ab3P(ner_dir) # CHeck if runs with NER_DIR specified 
+            abbreviations = {}
             # ----------------------------------------------------------------
             #Sequentially link entities to the respective target knowledge base
             # ----------------------------------------------------------------
@@ -58,6 +58,5 @@ class nel():
         
         else:
             raise ValueError('Model not implemented!')
-        """
-        nel_runs = ['19THJVWBLGHUUTD_chemical', '3V2W05ZPSZAYBXM_gene', '8VVKX8NVNFXAI79_disease', 'BWHM1NV34VP0A5S_organism', 'O0XY13X4FFE8CQR_bioprocess']
+        
         return nel_runs

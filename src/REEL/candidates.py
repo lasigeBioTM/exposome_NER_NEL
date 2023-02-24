@@ -41,8 +41,6 @@ def map_to_kb(
     
     changed_cache = False 
     top_concepts = []
-    #TODO: check why potassium phospate does not return exact match from 
-    # ctd_chem
 
     if entity_text in doc_abbreviations:
         entity_text = doc_abbreviations[entity_text]
@@ -64,9 +62,6 @@ def map_to_kb(
             top_concepts = [(entity_text, 100, 1, 'syn')]
             kb_cache[entity_text] = top_concepts
             changed_cache = True
-        
-        #else:
-            #TODO: replace entity words by synonyms
             
         else:
             # Get first ten KB candidates according to lexical similarity 
@@ -213,8 +208,6 @@ def generate_candidates_list(
             
             if kb != 'ncbi_gene':
                 # Using Networkx
-                #outcount = kb_graph.out_degree(candidate["kb_id"])
-                #incount = kb_graph.in_degree(candidate["kb_id"])
 
                 try:
                     outcount = id_to_info[candidate["kb_id"]][0]
@@ -297,9 +290,7 @@ def check_if_related(c1_url, link_mode, extracted_relations, kb_edges, c2_url):
     >>> check_if_related(c1, c2, link_mode, extracted_relations, kb_edges)
     True
     """
-    #c2_url = c2[0]
-    #rel1 = (c1_url, c2_url)
-    #rel2 = (c2_url, c1_url)
+   
     related = False
 
     if link_mode == "corpus":
@@ -313,7 +304,6 @@ def check_if_related(c1_url, link_mode, extracted_relations, kb_edges, c2_url):
 
     else:
         
-        #if c1_url == c2_url or rel1 in kb_edges or rel2 in kb_edges: 
         if c1_url == c2_url:
             # There is a KB link between the two candidates
             related = True
@@ -396,26 +386,11 @@ def write_candidates_file(kb, doc_entities_candidates, candidates_dir,
                 # Get all the candidates for the remaining entities in the 
                 # same document
                 #print(doc_entities_candidates)
-                if doc_id == 'PMC7917998':
-                    
-                    for annotation2 in doc_entities_candidates:
-                        
-                        if annotation1[0] != annotation2[0]:
-                            
-                            for c2 in annotation2[1]:
-                                #print(c2)
-                                #print(c2['url'], c2['id'])
-                                pass
+            
                 other_candidates = [(c2['url'], c2['id']) for annotation2 in 
                     doc_entities_candidates if annotation1[0] != annotation2[0] 
                     for c2 in annotation2[1]]
 
-                # Check if there is a relation between current candidate and each
-                # of the candidates for the remaining entities
-                #links = filter(partial(
-                #    check_if_related,
-                #        c1['url'], link_mode, extracted_relations, kb_edges), 
-                #        other_candidates)
                 
                 id_links = [str(c2[1]) for c2 in other_candidates 
                                 if check_if_related( 
@@ -423,7 +398,6 @@ def write_candidates_file(kb, doc_entities_candidates, candidates_dir,
                                     extracted_relations, 
                                     kb_edges, c2[0])]
 
-                #print(id_links)  
                 # The ids of the candidates are needed instead of the KB ids
                 #id_links = [str(link[1]) for link in links]
                 c1["links"] = ";".join(set(id_links))

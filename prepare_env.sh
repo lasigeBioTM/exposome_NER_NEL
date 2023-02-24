@@ -29,17 +29,26 @@
 # ---------------------------------------------------------------------------
 #            Download and prepare  abbreviation detector AB3P
 # ---------------------------------------------------------------------------
+
 cd src/abbreviation_detector/
 
 #git clone https://github.com/ncbi-nlp/NCBITextLib.git
-## 1. Install NCBITextLib
-cd NCBITextLib/lib/
-make
+#wget https://github.com/ncbi-nlp/NCBITextLib/archive/refs/heads/master.zip
+#unzip master.zip
+#mv NCBITextLib-master NCBITextLib
 
-cd ../../
+## 1. Install NCBITextLib
+#cd NCBITextLib/lib/
+#make
+
+#cd ../../
 
 ## 2. Install Ab3P
 #git clone https://github.com/ncbi-nlp/Ab3P.git
+wget https://github.com/ncbi-nlp/Ab3P/archive/refs/heads/master.zip
+unzip master.zip
+mv Ab3P-master Ab3P
+
 cd Ab3P
 sed -i 's/** location of NCBITextLib **/../NCBITextLib/' Makefile
 make
